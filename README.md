@@ -10,7 +10,7 @@
 
 Proyecto cuyo objetivo es practicar los arreglos de objetos, al igual que practicar las relaciones de clases como agregación, composición y la asociación.
 
-Contiene 3 clases y un método principal.
+Contiene 3 clases y su principal.
 
 - Empresa: Donde el objetivo es almacenar un arreglo de ventas
 - Venta: Cuyo objetivo es almacenar un arreglo de productos
