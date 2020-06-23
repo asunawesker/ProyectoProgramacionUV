@@ -69,7 +69,7 @@ public class Venta {
     
     //Union between Producto class and Venta class
     //Composition 
-    public void addProduct(String id, String nombre, int precio){
+    public void addProduct(String id, String nombre, float precio){
         if (fullProductList()) {
             productos = Arrays.copyOf(productos, productos.length + 10);
         } 
@@ -79,25 +79,15 @@ public class Venta {
     }
 
     //Add product method 
-    public void printProducts(){
+    public void printProductsSale(){
+        System.out.println("Sale ID: "+getId()+
+                "Description: "+getDescripcion()+
+                "Date: "+getFechaVenta());
         for (int i=0;i<getPlace();i++) {
             System.out.println("ID: " + productos[i].getId() + 
-                        "\nNombre: " + productos[i].getNombre() + 
-                        "\nPrecio: " + productos[i].getPrecio());
+                        "\nName: " + productos[i].getNombre() + 
+                        "\nPrice: " + productos[i].getPrecio());
         } 
-    }
-    
-    //Search product method, the method print and specific product 
-    public void searchProduct(String id){
-        for (int i=0;i<getPlace();i++) {
-            if (id.equals(productos[i].getId())) {
-                JOptionPane.showMessageDialog(null, 
-                        "ID: " + productos[i].getId() + 
-                        "\nNombre: " + productos[i].getNombre() + 
-                        "\nPrecio: " + productos[i].getPrecio(), 
-                        "Product", JOptionPane.DEFAULT_OPTION);
-            } 
-        }
     }
     
     //The method add all the products price and create the total price of the sale

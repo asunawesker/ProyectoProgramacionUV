@@ -6,6 +6,7 @@
 package ventaproducto;
 
 import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,7 +43,7 @@ public class Catalogo {
         return getPlace() == productos.length;
     }
     
-    //Union between Producto class and Venta class
+    //Union between Catalogo class and Producto class
     //Composition 
     public void addProduct(String id, String nombre, int precio){
         if (fullProductList()) {
@@ -61,5 +62,15 @@ public class Catalogo {
                         "\nPrecio: " + productos[i].getPrecio());
         } 
     }
-    
+
+    //Search product method, the method print and specific product 
+    public void searchProduct(String id){
+        for (int i=0;i<getPlace();i++) {
+            if (id.equals(productos[i].getId())) {
+                System.out.println("ID: " + productos[i].getId() + 
+                        "\nName: " + productos[i].getNombre() + 
+                        "\nPrice: " + productos[i].getPrecio());
+            } 
+        }
+    }
 }

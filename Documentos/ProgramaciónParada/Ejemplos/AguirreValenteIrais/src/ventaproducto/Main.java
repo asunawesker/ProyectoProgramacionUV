@@ -8,9 +8,9 @@ import javax.swing.JOptionPane;
  * @author asunawesker
  */
 public class Main {
-    static Empresa empresa = new Empresa ("Abarrotes Unidos");
+    static Empresa empresa = new Empresa("Abarrotes Unidos");
+    static Catalogo catalogo = new Catalogo();
     static String option;
-    static String idSale, idProduct;
     static Scanner entrada = new Scanner(System.in);
     
     public static void main(String[] args) {
@@ -76,15 +76,17 @@ public class Main {
             "Select the option you want to use","Menu",JOptionPane.INFORMATION_MESSAGE, 
             null, menuSale, menuSale[0]); 
         
+        
         switch(option) {
-            case "Sell products":
+            
+            case "Sell products": 
+                empresa.addSale();
+                break;
                 
-                break;
             case "Search sale":
-                System.out.println("Enter the sale ID: ");
-                idSale = entrada.next();
-                empresa.searchSales(idSale);
+                empresa.searchSale();
                 break;
+                
             case "Exit":
                 break;
         } 
@@ -122,8 +124,10 @@ public class Main {
         
         switch(option) {
             case "Add client":
+                
                 break;
             case "Search client":
+                
                 break;
             case "Exit":
                 break;
