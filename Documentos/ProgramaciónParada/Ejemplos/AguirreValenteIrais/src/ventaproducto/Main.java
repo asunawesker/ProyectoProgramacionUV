@@ -15,7 +15,6 @@ public class Main {
     
     public static void main(String[] args) {
         
-        insertData();
         globalMenu();
                         
     }
@@ -43,7 +42,7 @@ public class Main {
                     break;
 
                 case "Catalogue": 
-                    
+                    menuCatalogue();
                     break;
 
                 case "Products": 
@@ -58,11 +57,6 @@ public class Main {
             }
             
         } while(!"Exit".equals(option)); 
-    }
-    
-    public static void insertData(){
-
-        
     }
     
     public static void menuSale(){
@@ -106,6 +100,49 @@ public class Main {
             case "Add product":
                 break;
             case "Search product":
+                break;
+            case "Exit":
+                break;
+        } 
+    }
+    
+    public static void menuCatalogue(){
+         Object [] menuProducts = {" ",
+                "Add product",
+                "Show products",
+                "Exit"};
+        
+        option = (String) JOptionPane.showInputDialog(null, 
+            "Select the option you want to use","Menu",JOptionPane.INFORMATION_MESSAGE, 
+            null, menuProducts, menuProducts[0]);
+        
+        switch(option) {
+            case "Add product":
+                
+                do {
+                    
+                    empresa.addProductsToCatalog();
+                    
+                    System.out.println("Do you want to add another product? (S/N)");
+                    option = entrada.next();
+                    
+                    switch(option){
+                        case "S":
+                            empresa.addProductsToCatalog();
+                    
+                        System.out.println("Do you want to add another product? (S/N)");
+                        option = entrada.next();
+                            break;
+                        
+                        case "N":
+                            break;
+                    }
+                    
+                } while(!option.equals("N"));
+                
+                break;
+            case "Show products":
+                
                 break;
             case "Exit":
                 break;

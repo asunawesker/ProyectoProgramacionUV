@@ -19,6 +19,7 @@ public class Empresa {
     public Empresa(String nombre){
         this.nombre = nombre;
         ventas = new Venta[3];
+        catalogo = new Catalogo();
     }
 
     /*
@@ -66,35 +67,48 @@ public class Empresa {
         this.ventas[getPlace()] = venta;
         setPlace(getPlace()+1);
         
-        ProductPerSale();
-    }
-    
-    public void ProductPerSale(){
-        for (int i=0;i<getPlace();i++){
-            String idProduct;
-            String nombre;
-            float precio;
+        String idProduct;
+        
+        System.out.println("Product ID: ");
+        idProduct = entrada.next();
 
-            do {
+        catalogo.addToSale(venta, idProduct);
+        
+        do{
+ 
+            System.out.println("Do you want to add another product? (S/N)");
+            option = entrada.next();
+            
+            switch(option){
+                case "S":
+                    System.out.println("Product ID: ");
+                    idProduct = entrada.next();
 
-                System.out.println("Product ID: ");
-                idProduct = entrada.next();
-                System.out.println("Product name: ");
-                nombre = entrada.next();
-                System.out.println("Price: ");
-                precio = entrada.nextFloat();
-
-                getVentas()[i].addProduct(idProduct, nombre, precio); 
-
-                System.out.println("Do you want to add another product? (S/N)");
-                option = entrada.next();
-
-            } while (!"N".equals(option));
-        }
+                    catalogo.addToSale(venta, idProduct);
+                    break;
+                case "N":
+                    break;
+            }
+            
+        } while(!option.equals("N"));
+        
     }
     
     public void addProductsToCatalog(){
-        
+        String idProduct;
+        String nombre;
+        float precio;
+
+        System.out.println("Product ID: ");
+        idProduct = entrada.next();
+        System.out.println("Product name: ");
+        nombre = entrada.next();
+        System.out.println("Price: ");
+        precio = entrada.nextFloat();
+
+        Producto producto = new Producto(idProduct,nombre,precio);
+        catalogo.addProduct(producto); 
+
     }
     
     //The method search a specific sale and print it 
