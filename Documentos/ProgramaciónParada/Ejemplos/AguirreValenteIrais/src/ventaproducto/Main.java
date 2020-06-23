@@ -38,8 +38,6 @@ public class Main {
                     break;
 
                 case "Catalogue": 
-                    idSale = JOptionPane.showInputDialog("Write sale id: ");                            
-                    individualSale(idSale);
                     break;
 
                 case "Products": 
@@ -122,52 +120,6 @@ public class Main {
             case "Exit":
                 break;
         } 
-    }
-    
-    //The method print all the sales and their information
-    public static void showDataSales() {
-        //System.out.println("\tCompany sales");
-        empresa.printSales();
-    }
-    
-    //The method print all the total sales price and their information
-    public static void showTotalPrice(){
-        for (int i=0;i<empresa.getPlace();i++){
-            JOptionPane.showMessageDialog(null, 
-                    "ID venta: "+empresa.getVentas()[i].getId()+
-                    "\nPrecio total: "+empresa.getVentas()[i].totalToPay(), 
-                    "Price per sale", JOptionPane.UNDEFINED_CONDITION);
-        }
-    }
-    
-    //The method print all the products in all the sales and show all the information 
-    public static void showDataProducts(String id){
-        for (int i=0;i<empresa.getPlace();i++){
-            if (id.equals(empresa.getVentas()[i].getId())){
-                empresa.getVentas()[i].printProducts();
-            } 
-        }
-    }
-    
-    //The method shows a specific sale
-    public static void individualSale(String id){
-        empresa.searchSales(id);
-    }
-            
-    //The method shows a specific product 
-    public static void individualProduct(String idS, String idP){
-        
-        for (int i=0;i<empresa.getPlace();i++){
-            if (idS.equals(empresa.getVentas()[i].getId())){
-                empresa.getVentas()[i].searchProduct(idP);
-            } 
-        }
-    }
-    
-    //The method shows a specific total sale price
-    public static void individualPriceSale(String id){
-        JOptionPane.showMessageDialog(null, "Individual total price from sale "+id
-                +"\nTotal price sale: "+empresa.individualTotalPay(id));
     }
     
 }
