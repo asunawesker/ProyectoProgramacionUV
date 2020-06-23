@@ -51,28 +51,15 @@ public class Empresa {
         setPlace(getPlace()+1);
     }
     
-    //The method print all the sales
-    public void printSales(){
-        for (int i=0;i<getPlace();i++) {
-            JOptionPane.showMessageDialog(null, 
-                    "ID: "+ventas[i].getId()+
-                    "\nDescripción: "+ventas[i].getDescripcion()+
-                    "\nFecha de venta: "+ventas[i].getFechaVenta()+
-                    "\nPrecio total: "+ventas[i].totalToPay()+"\n",
-                    "Sales",JOptionPane.INFORMATION_MESSAGE);
-            
-        }
-    }
-    
     //The method search a specific sale and print it 
     public void searchSales(String id){
         for (Venta venta : ventas) {
             if (id.equals(venta.getId())) {
-                JOptionPane.showMessageDialog(null, "ID: " + venta.getId() + 
+                System.out.println("ID: " + venta.getId() + 
                         "\nDescripción: " + venta.getDescripcion() + 
                         "\nFecha de venta: " + venta.getFechaVenta() + 
-                        "\nPrecio total: " + venta.totalToPay(), 
-                        "Sale", JOptionPane.INFORMATION_MESSAGE);
+                        "\nPrecio total: " + venta.totalToPay());
+                venta.printProducts();
             } 
         }
     }

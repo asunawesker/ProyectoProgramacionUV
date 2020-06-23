@@ -1,5 +1,6 @@
 package ventaproducto;
 
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -62,9 +63,16 @@ public class Venta {
         this.productos = productos;
     }
     
+    public boolean fullProductList(){
+        return getPlace() == productos.length;
+    }
+    
     //Union between Producto class and Venta class
     //Composition 
     public void addProduct(String id, String nombre, int precio){
+        if (fullProductList()) {
+            productos = Arrays.copyOf(productos, productos.length + 10);
+        } 
         Producto producto = new Producto(id, nombre, precio);
         this.productos[getPlace()] = producto;
         setPlace(getPlace()+1);
@@ -73,11 +81,9 @@ public class Venta {
     //Add product method 
     public void printProducts(){
         for (int i=0;i<getPlace();i++) {
-            JOptionPane.showMessageDialog(null, 
-                        "ID: " + productos[i].getId() + 
+            System.out.println("ID: " + productos[i].getId() + 
                         "\nNombre: " + productos[i].getNombre() + 
-                        "\nPrecio: " + productos[i].getPrecio(), 
-                        "Product", JOptionPane.DEFAULT_OPTION);
+                        "\nPrecio: " + productos[i].getPrecio());
         } 
     }
     
