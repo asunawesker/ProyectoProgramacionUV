@@ -15,12 +15,14 @@ public class Empresa {
     private int placeV = 0;
     private Venta ventas[];
     private Catalogo catalogo;
+    private AgendaClientes agenda;
     
     //Constructor with all the atributes except for place
     public Empresa(String nombre){
         this.nombre = nombre;
         ventas = new Venta[3];
         catalogo = new Catalogo();
+        agenda = new AgendaClientes();
     }
 
     /*
@@ -65,6 +67,9 @@ public class Empresa {
     //Union between Empresa class and Venta class
     //Aggregation 
     public void addSale(){
+        String idProduct;
+        String idCustomer;
+        
         if (fullSaleList()) {
             ventas = Arrays.copyOf(ventas, ventas.length + 10);
         }
@@ -81,8 +86,6 @@ public class Empresa {
 
         this.ventas[getPlaceV()] = venta;
         setPlaceV(getPlaceV()+1);
-        
-        String idProduct;
         
         System.out.println("Product ID: ");
         idProduct = entrada.next();
@@ -107,6 +110,27 @@ public class Empresa {
             
         } while(!option.equals("N"));
         
+        System.out.println("Does the customer have an account in the store?(S/N)");
+        option = entrada.next();
+
+        switch(option){
+            case "S":
+                System.out.println("Customer ID: ");
+                idCustomer = entrada.next();
+
+                System.out.println("ID: " + venta.getId() + 
+                        "\nDescripción: " + venta.getDescripcion() + 
+                        "\nFecha de venta: " + venta.getFechaVenta() + 
+                        "\nPrecio total: " + agenda.customerDiscount(venta, idCustomer));
+                break;
+            case "N":
+                System.out.println("ID: " + venta.getId() + 
+                        "\nDescripción: " + venta.getDescripcion() + 
+                        "\nFecha de venta: " + venta.getFechaVenta() + 
+                        "\nPrecio total: " + venta.totalToPay());
+                break;
+        }
+
     }
     
     public void addProductsToCatalog(){

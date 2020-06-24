@@ -59,7 +59,19 @@ public class AgendaClientes {
                 System.out.println("ID: " + clientes[i].getId() + 
                         "\nName: " + clientes[i].getNombre() + 
                         "\nPrice: " + clientes[i].getTelefono());
+            } else {
+                System.out.println("The coustumer does not exist");
+            }
+        }
+    }
+    
+    public float customerDiscount(Venta venta, String id){
+        float discount = 0;
+        for (int i=0;i<getPlaceC();i++) {
+            if (id.equals(clientes[i].getId())) {
+                discount = (float) (venta.totalToPay() * .95);
             } 
         }
+        return discount;
     }
 }
