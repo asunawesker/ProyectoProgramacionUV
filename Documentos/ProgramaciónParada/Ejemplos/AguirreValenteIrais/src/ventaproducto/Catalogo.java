@@ -42,8 +42,6 @@ public class Catalogo {
         return getPlace() == productos.length;
     }
     
-    //Union between Catalogo class and Producto class
-    //Composition 
     public void addProduct(Producto producto){
         this.productos[getPlace()] = producto;
         setPlace(getPlace()+1);
@@ -73,6 +71,8 @@ public class Catalogo {
         for (int i=0;i<getPlace();i++){
             if (id.equals(productos[i].getId())){
                 venta.addProduct(productos[i].getId(), productos[i].getNombre(), productos[i].getPrecio());
+            } else {
+                System.out.println("The product does not exist");
             }
         }
     }

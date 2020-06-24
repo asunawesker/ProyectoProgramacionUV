@@ -1,19 +1,20 @@
 package ventaproducto;
 
+import java.util.Arrays;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author asunawesker
  */
 public class Empresa {
-    private String nombre;
-    private int place = 0;
-    private Venta ventas[];
-    private String option;
-    private Catalogo catalogo;
     static Scanner entrada = new Scanner(System.in);
+    
+    private String nombre;
+    private String option;
+    private int placeV = 0;
+    private Venta ventas[];
+    private Catalogo catalogo;
     
     //Constructor with all the atributes except for place
     public Empresa(String nombre){
@@ -33,12 +34,12 @@ public class Empresa {
         this.nombre = nombre;
     }
 
-    public int getPlace() {
-        return place;
+    public int getPlaceV() {
+        return placeV;
     }
 
-    public void setPlace(int place) {
-        this.place = place;
+    public void setPlaceV(int placeV) {
+        this.placeV = placeV;
     }
 
     public Venta[] getVentas() {
@@ -48,11 +49,25 @@ public class Empresa {
     public void setVentas(Venta[] ventas) {
         this.ventas = ventas;
     }
+
+    public Catalogo getCatalogo() {
+        return catalogo;
+    }
+
+    public void setCatalogo(Catalogo catalogo) {
+        this.catalogo = catalogo;
+    }
+    
+    private boolean fullSaleList(){
+        return getPlaceV() == ventas.length;
+    }
     
     //Union between Empresa class and Venta class
     //Aggregation 
     public void addSale(){
-        
+        if (fullSaleList()) {
+            ventas = Arrays.copyOf(ventas, ventas.length + 10);
+        }
         String idSale, descripcion, fechaVenta;
         
         System.out.println("Sale ID:");
@@ -64,8 +79,8 @@ public class Empresa {
 
         Venta venta = new Venta(idSale, descripcion, fechaVenta);
 
-        this.ventas[getPlace()] = venta;
-        setPlace(getPlace()+1);
+        this.ventas[getPlaceV()] = venta;
+        setPlaceV(getPlaceV()+1);
         
         String idProduct;
         
@@ -117,7 +132,7 @@ public class Empresa {
         System.out.println("Sale ID: ");
         idSale = entrada.next();
         
-        for (int i=0;i<getPlace();i++) {
+        for (int i=0;i<getPlaceV();i++) {
             if (idSale.equals(ventas[i].getId())) {
                 System.out.println("ID: " + ventas[i].getId() + 
                         "\nDescripción: " + ventas[i].getDescripcion() + 
@@ -128,8 +143,9 @@ public class Empresa {
     }
     
     public void showSale(){
-        for (int i=0;i<getPlace();i++){
+        for (int i=0;i<getPlaceV();i++){
             ventas[i].printProductsSale();
         }
     }
+    
 }

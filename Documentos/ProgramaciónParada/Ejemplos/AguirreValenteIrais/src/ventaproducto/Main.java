@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
  */
 public class Main {
     static Empresa empresa = new Empresa("Abarrotes Unidos");
-    static Catalogo catalogo = new Catalogo();
     static String option;
     static Scanner entrada = new Scanner(System.in);
     
@@ -19,15 +18,12 @@ public class Main {
                         
     }
     
-    public static void globalMenu() {
-        
-        
+    public static void globalMenu() {               
         do {
             
             Object [] menu = {" ",
                     "Sale",
                     "Catalogue",
-                    "Products",
                     "Clients",
                     "Exit"};    
             
@@ -43,10 +39,6 @@ public class Main {
 
                 case "Catalogue": 
                     menuCatalogue();
-                    break;
-
-                case "Products": 
-                    menuProducts();
                     break;
                     
                 case "Clients":
@@ -86,30 +78,11 @@ public class Main {
         } 
     }
     
-    public static void menuProducts(){
-        Object [] menuProducts = {" ",
-                    "Add product",
-                    "Search product",
-                    "Exit"};
-        
-        option = (String) JOptionPane.showInputDialog(null, 
-            "Select the option you want to use","Menu",JOptionPane.INFORMATION_MESSAGE, 
-            null, menuProducts, menuProducts[0]);
-        
-        switch(option) {
-            case "Add product":
-                break;
-            case "Search product":
-                break;
-            case "Exit":
-                break;
-        } 
-    }
-    
     public static void menuCatalogue(){
          Object [] menuProducts = {" ",
                 "Add product",
-                "Show products",
+                "Show all products",
+                "Show one product",
                 "Exit"};
         
         option = (String) JOptionPane.showInputDialog(null, 
@@ -130,8 +103,8 @@ public class Main {
                         case "S":
                             empresa.addProductsToCatalog();
                     
-                        System.out.println("Do you want to add another product? (S/N)");
-                        option = entrada.next();
+                            System.out.println("Do you want to add another product? (S/N)");
+                            option = entrada.next();
                             break;
                         
                         case "N":
@@ -141,8 +114,18 @@ public class Main {
                 } while(!option.equals("N"));
                 
                 break;
-            case "Show products":
                 
+            case "Show all products":
+                empresa.getCatalogo().printProducts();
+                break;
+                
+            case "Show one product":
+                String id;
+                
+                System.out.println("Product ID: ");
+                id = entrada.next();
+                
+                empresa.getCatalogo().searchProduct(id);
                 break;
             case "Exit":
                 break;

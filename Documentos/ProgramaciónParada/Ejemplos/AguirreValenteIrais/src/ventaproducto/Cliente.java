@@ -5,17 +5,23 @@
  */
 package ventaproducto;
 
+import java.util.Scanner;
+
 /**
  *
  * @author asunawesker
  */
 public class Cliente {
+    static Scanner entrada = new Scanner(System.in);
+    
     private String nombre;
     private String id;
+    private String telefono;
 
-    public Cliente(String nombre, String id) {
+    public Cliente(String id, String nombre, String telefono) {
         this.nombre = nombre;
         this.id = id;
+        this.telefono = telefono;
     }
 
     public String getNombre() {
@@ -33,5 +39,14 @@ public class Cliente {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+    
     
 }

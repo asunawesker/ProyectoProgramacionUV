@@ -1,7 +1,6 @@
 package ventaproducto;
 
 import java.util.Arrays;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,7 +62,7 @@ public class Venta {
         this.productos = productos;
     }
     
-    public boolean fullProductList(){
+    private boolean fullProductList(){
         return getPlace() == productos.length;
     }
     
