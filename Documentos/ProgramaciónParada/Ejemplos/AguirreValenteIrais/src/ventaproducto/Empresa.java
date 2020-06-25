@@ -172,4 +172,20 @@ public class Empresa {
         }
     }
     
+    public void allCustomers(){
+        agenda.printCustomers();
+    }
+    
+    public void searchCustomers(){
+        String id;
+        
+        System.out.println("Customer ID: ");
+        id = entrada.next();
+        
+        agenda.searchCustomers(id);
+    }
+    
+    public void addCustomers(){
+        agenda.addCustomer(option);
+    }
 }

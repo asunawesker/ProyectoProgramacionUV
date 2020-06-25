@@ -42,6 +42,7 @@ public class Main {
                     break;
                     
                 case "Clients":
+                    menuClients();
                     break;
                     
                 case "Exit": 
@@ -135,6 +136,7 @@ public class Main {
     public static void menuClients(){
         Object [] menuClient = {" ",
                     "Add client",
+                    "Show all clients",
                     "Search client",
                     "Exit"};
         
@@ -144,10 +146,13 @@ public class Main {
         
         switch(option) {
             case "Add client":
-                
+                empresa.addCustomers();
+                break;
+            case "Show all clients":
+                empresa.allCustomers();
                 break;
             case "Search client":
-                
+                empresa.searchCustomers();
                 break;
             case "Exit":
                 break;

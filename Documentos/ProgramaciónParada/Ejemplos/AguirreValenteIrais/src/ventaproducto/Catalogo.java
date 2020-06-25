@@ -63,6 +63,7 @@ public class Catalogo {
                 System.out.println("ID: " + productos[i].getId() + 
                         "\nName: " + productos[i].getNombre() + 
                         "\nPrice: " + productos[i].getPrecio());
+                System.out.println("");
             } 
         }
     }
@@ -71,7 +72,7 @@ public class Catalogo {
         for (int i=0;i<getPlace();i++){
             if (id.equals(productos[i].getId())){
                 venta.addProduct(productos[i].getId(), productos[i].getNombre(), productos[i].getPrecio());
-            } else {
+            } else if (!id.equals(productos[i].getId()))  {
                 System.out.println("The product does not exist");
             }
         }

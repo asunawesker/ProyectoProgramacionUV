@@ -13,53 +13,103 @@ import static ventaproducto.Empresa.entrada;
  */
 public class AgendaClientes {
     private Cliente clientes[];
-    private int placeC = 0;
+    private int place = 0;
     
-    public void AgendaClientes(){
-        clientes = new Cliente[10];
-    }
-    
-    public int getPlaceC() {
-        return placeC;
+    public AgendaClientes(){
+        clientes = new Cliente[100];
     }
 
-    public void setPlaceC(int placeC) {
-        this.placeC = placeC;
+    /*
+    Getters & setters
+    */
+    public Cliente[] getClientes() {
+        return clientes;
+    }
+
+    public void setCliente(Cliente[] clientes) {
+        this.clientes = clientes;
+    }
+
+    public int getPlace() {
+        return place;
+    }
+
+    public void setPlace(int place) {
+        this.place = place;
     }
     
-    public void addCustomer(){
+    public boolean fullClientList(){
+        return getPlace() == clientes.length;
+    }
+
+    
+    public void addCustomer(String option){
+
         String nombre;
+        String apellido;
         String id;
         String telefono;
         
         System.out.println("Customer name: ");
         nombre = entrada.next();
+        System.out.println("Custumer last name: ");
+        apellido = entrada.next();
         System.out.println("Customer ID: ");
         id = entrada.next();
         System.out.println("Telephone: ");
         telefono = entrada.next();
         
-        Cliente cliente = new Cliente(id, nombre, telefono);
+        Cliente cliente = new Cliente(id, nombre, apellido, telefono);
+        this.clientes[getPlace()] = cliente;
+        setPlace(getPlace()+1);
         
-        this.clientes[getPlaceC()] = cliente;
-        setPlaceC(getPlaceC()+1);
+        do{
+ 
+            System.out.println("Do you want to add another customer? (S/N)");
+            option = entrada.next();
+            
+            switch(option){
+                case "S":
+                    System.out.println("Customer name: ");
+                    nombre = entrada.next();
+                    System.out.println("Custumer last name: ");
+                    apellido = entrada.next();
+                    System.out.println("Customer ID: ");
+                    id = entrada.next();
+                    System.out.println("Telephone: ");
+                    telefono = entrada.next();
+
+                    Cliente clienteOther = new Cliente(id, nombre, apellido, telefono);
+
+                    this.clientes[getPlace()] = clienteOther;
+                    setPlace(getPlace()+1);
+                    break;
+                    
+                case "N":
+                    System.out.println("Clients successfully added");
+                    break;
+            }
+            
+        } while(!option.equals("N"));
+        
     } 
     
     public void printCustomers(){
-        for (int i=0;i<getPlaceC();i++) {
+        for (int i=0;i<getPlace();i++) {
             System.out.println("ID: " + clientes[i].getId() + 
                         "\nNombre: " + clientes[i].getNombre() + 
                         "\nPrecio: " + clientes[i].getTelefono());
+            System.out.println("");
         } 
     }
     
     public void searchCustomers(String id){
-        for (int i=0;i<getPlaceC();i++) {
+        for (int i=0;i<getPlace();i++) {
             if (id.equals(clientes[i].getId())) {
                 System.out.println("ID: " + clientes[i].getId() + 
                         "\nName: " + clientes[i].getNombre() + 
                         "\nPrice: " + clientes[i].getTelefono());
-            } else {
+            } else if (!id.equals(clientes[i].getId())) {
                 System.out.println("The coustumer does not exist");
             }
         }
@@ -67,7 +117,7 @@ public class AgendaClientes {
     
     public float customerDiscount(Venta venta, String id){
         float discount = 0;
-        for (int i=0;i<getPlaceC();i++) {
+        for (int i=0;i<getPlace();i++) {
             if (id.equals(clientes[i].getId())) {
                 discount = (float) (venta.totalToPay() * .95);
             } 

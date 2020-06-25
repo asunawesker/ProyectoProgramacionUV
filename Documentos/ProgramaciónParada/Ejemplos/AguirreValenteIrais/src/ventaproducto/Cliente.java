@@ -15,11 +15,13 @@ public class Cliente {
     static Scanner entrada = new Scanner(System.in);
     
     private String nombre;
+    private String apellido;
     private String id;
     private String telefono;
 
-    public Cliente(String id, String nombre, String telefono) {
+    public Cliente(String id, String nombre, String apellido ,String telefono) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.id = id;
         this.telefono = telefono;
     }
@@ -47,6 +49,13 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
     
 }
