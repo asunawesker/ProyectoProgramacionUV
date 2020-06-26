@@ -50,7 +50,7 @@ public class Catalogo {
     //Add product method 
     public void printProducts(){
         for (int i=0;i<getPlace();i++) {
-            System.out.println("ID: " + productos[i].getId() + 
+            System.out.println("\nID: " + productos[i].getId() + 
                         "\nNombre: " + productos[i].getNombre() + 
                         "\nPrecio: " + productos[i].getPrecio());
         } 
@@ -58,9 +58,10 @@ public class Catalogo {
 
     //Search product method, the method print and specific product 
     public void searchProduct(String id){
+        System.out.println("\n\tSearching product");
         for (int i=0;i<getPlace();i++) {
             if (id.equals(productos[i].getId())) {
-                System.out.println("ID: " + productos[i].getId() + 
+                System.out.println("\nID: " + productos[i].getId() + 
                         "\nName: " + productos[i].getNombre() + 
                         "\nPrice: " + productos[i].getPrecio());
                 System.out.println("");
@@ -72,9 +73,7 @@ public class Catalogo {
         for (int i=0;i<getPlace();i++){
             if (id.equals(productos[i].getId())){
                 venta.addProduct(productos[i].getId(), productos[i].getNombre(), productos[i].getPrecio());
-            } else if (!id.equals(productos[i].getId()))  {
-                System.out.println("The product does not exist");
-            }
+            } 
         }
     }
 }

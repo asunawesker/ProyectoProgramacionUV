@@ -73,9 +73,12 @@ public class Empresa {
         if (fullSaleList()) {
             ventas = Arrays.copyOf(ventas, ventas.length + 10);
         }
+        
         String idSale, descripcion, fechaVenta;
         
-        System.out.println("Sale ID:");
+        System.out.println("\n.: S A L E :.");
+        
+        System.out.println("\nSale ID:");
         idSale = entrada.next();
         System.out.println("Description: ");
         descripcion = entrada.next();
@@ -87,22 +90,23 @@ public class Empresa {
         this.ventas[getPlaceV()] = venta;
         setPlaceV(getPlaceV()+1);
         
-        System.out.println("Product ID: ");
+        System.out.println("\nProduct ID: ");
         idProduct = entrada.next();
 
         catalogo.addToSale(venta, idProduct);
         
         do{
  
-            System.out.println("Do you want to add another product? (S/N)");
+            System.out.println("\nDo you want to add another product? (S/N)");
             option = entrada.next();
             
             switch(option){
                 case "S":
-                    System.out.println("Product ID: ");
+                    System.out.println("\nProduct ID: ");
                     idProduct = entrada.next();
 
                     catalogo.addToSale(venta, idProduct);
+                    System.out.println("");
                     break;
                 case "N":
                     break;
@@ -110,24 +114,27 @@ public class Empresa {
             
         } while(!option.equals("N"));
         
-        System.out.println("Does the customer have an account in the store?(S/N)");
+        System.out.println("\nDoes the customer have an account in the store?(S/N)");
         option = entrada.next();
 
         switch(option){
             case "S":
+                
+                System.out.println("\n\tCustomer Account");
+                
                 System.out.println("Customer ID: ");
                 idCustomer = entrada.next();
 
-                System.out.println("ID: " + venta.getId() + 
-                        "\nDescripción: " + venta.getDescripcion() + 
-                        "\nFecha de venta: " + venta.getFechaVenta() + 
-                        "\nPrecio total: " + agenda.customerDiscount(venta, idCustomer));
+                System.out.println("\nID: " + venta.getId() + 
+                        "\nDescription: " + venta.getDescripcion() + 
+                        "\nSale date: " + venta.getFechaVenta() + 
+                        "\nTotal price: " + agenda.customerDiscount(venta, idCustomer));
                 break;
             case "N":
                 System.out.println("ID: " + venta.getId() + 
-                        "\nDescripción: " + venta.getDescripcion() + 
-                        "\nFecha de venta: " + venta.getFechaVenta() + 
-                        "\nPrecio total: " + venta.totalToPay());
+                        "\nDescription: " + venta.getDescripcion() + 
+                        "\nSale date: " + venta.getFechaVenta() + 
+                        "\nTotal price: " + venta.totalToPay());
                 break;
         }
 
@@ -138,6 +145,8 @@ public class Empresa {
         String nombre;
         float precio;
 
+        System.out.println("\n\tAdding to the catalog");
+        
         System.out.println("Product ID: ");
         idProduct = entrada.next();
         System.out.println("Product name: ");
@@ -153,7 +162,10 @@ public class Empresa {
     //The method search a specific sale and print it 
     public void searchSale(){
         String idSale;
-        System.out.println("Sale ID: ");
+        
+        System.out.println("\n\tSearching sale");
+        
+        System.out.println("\nSale ID: ");
         idSale = entrada.next();
         
         for (int i=0;i<getPlaceV();i++) {
@@ -179,7 +191,7 @@ public class Empresa {
     public void searchCustomers(){
         String id;
         
-        System.out.println("Customer ID: ");
+        System.out.println("\nCustomer ID: ");
         id = entrada.next();
         
         agenda.searchCustomers(id);

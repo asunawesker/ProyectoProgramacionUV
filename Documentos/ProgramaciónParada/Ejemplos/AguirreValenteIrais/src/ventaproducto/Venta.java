@@ -83,9 +83,10 @@ public class Venta {
                 "Description: "+getDescripcion()+
                 "Date: "+getFechaVenta());
         for (int i=0;i<getPlace();i++) {
-            System.out.println("ID: " + productos[i].getId() + 
+            System.out.println("\nID: " + productos[i].getId() + 
                         "\nName: " + productos[i].getNombre() + 
                         "\nPrice: " + productos[i].getPrecio());
+            System.out.println("");
         } 
     }
     
