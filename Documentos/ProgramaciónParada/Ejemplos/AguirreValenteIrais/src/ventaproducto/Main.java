@@ -123,6 +123,8 @@ public class Main {
             case "Show one product":
                 String id;
                 
+                System.out.println("\n\tSearching product");    
+                
                 System.out.println("Product ID: ");
                 id = entrada.next();
                 

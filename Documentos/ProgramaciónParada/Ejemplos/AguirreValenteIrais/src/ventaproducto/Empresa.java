@@ -1,6 +1,8 @@
 package ventaproducto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -12,17 +14,19 @@ public class Empresa {
     
     private String nombre;
     private String option;
-    private int placeV = 0;
-    private Venta ventas[];
     private Catalogo catalogo;
     private AgendaClientes agenda;
+    private ArrayList <Venta> ventas;
+    //private int placeV = 0;
+    //private Venta ventas[];
     
     //Constructor with all the atributes except for place
     public Empresa(String nombre){
         this.nombre = nombre;
-        ventas = new Venta[3];
         catalogo = new Catalogo();
         agenda = new AgendaClientes();
+        ventas = new ArrayList();
+        //ventas = new Venta[3];
     }
 
     /*
@@ -35,7 +39,16 @@ public class Empresa {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    public Catalogo getCatalogo() {
+        return catalogo;
+    }
 
+    public void setCatalogo(Catalogo catalogo) {
+        this.catalogo = catalogo;
+    }
+    
+    /*
     public int getPlaceV() {
         return placeV;
     }
@@ -51,18 +64,11 @@ public class Empresa {
     public void setVentas(Venta[] ventas) {
         this.ventas = ventas;
     }
-
-    public Catalogo getCatalogo() {
-        return catalogo;
-    }
-
-    public void setCatalogo(Catalogo catalogo) {
-        this.catalogo = catalogo;
-    }
     
     private boolean fullSaleList(){
         return getPlaceV() == ventas.length;
     }
+    */
     
     //Union between Empresa class and Venta class
     //Aggregation 
@@ -70,10 +76,12 @@ public class Empresa {
         String idProduct;
         String idCustomer;
         
+        /*
         if (fullSaleList()) {
             ventas = Arrays.copyOf(ventas, ventas.length + 10);
         }
-        
+        */
+
         String idSale, descripcion, fechaVenta;
         
         System.out.println("\n.: S A L E :.");
@@ -86,9 +94,10 @@ public class Empresa {
         fechaVenta = entrada.next();
 
         Venta venta = new Venta(idSale, descripcion, fechaVenta);
-
-        this.ventas[getPlaceV()] = venta;
-        setPlaceV(getPlaceV()+1);
+        
+        ventas.add(venta);
+        //this.ventas[getPlaceV()] = venta;
+        //setPlaceV(getPlaceV()+1);
         
         System.out.println("\nProduct ID: ");
         idProduct = entrada.next();
@@ -124,13 +133,15 @@ public class Empresa {
                 
                 System.out.println("Customer ID: ");
                 idCustomer = entrada.next();
-
+                
+                System.out.println("\n\tSale");
                 System.out.println("\nID: " + venta.getId() + 
                         "\nDescription: " + venta.getDescripcion() + 
                         "\nSale date: " + venta.getFechaVenta() + 
                         "\nTotal price: " + agenda.customerDiscount(venta, idCustomer));
                 break;
             case "N":
+                System.out.println("\n\tSale");
                 System.out.println("ID: " + venta.getId() + 
                         "\nDescription: " + venta.getDescripcion() + 
                         "\nSale date: " + venta.getFechaVenta() + 
@@ -168,20 +179,41 @@ public class Empresa {
         System.out.println("\nSale ID: ");
         idSale = entrada.next();
         
+        Iterator it = ventas.iterator();
+        Venta venta;
+        while(it.hasNext()){
+            venta = (Venta) it.next();
+            if (idSale.equalsIgnoreCase(venta.getId())){
+                System.out.println("ID: " + venta.getId() + 
+                        "\nDescription: " + venta.getDescripcion() + 
+                        "\nSale data: " + venta.getFechaVenta() + 
+                        "\nTotal price: " + venta.totalToPay());
+            }
+        }
+        /*
         for (int i=0;i<getPlaceV();i++) {
             if (idSale.equals(ventas[i].getId())) {
                 System.out.println("ID: " + ventas[i].getId() + 
-                        "\nDescripción: " + ventas[i].getDescripcion() + 
-                        "\nFecha de venta: " + ventas[i].getFechaVenta() + 
-                        "\nPrecio total: " + ventas[i].totalToPay());
+                        "\nDescription: " + ventas[i].getDescripcion() + 
+                        "\nSale data: " + ventas[i].getFechaVenta() + 
+                        "\nTotal price: " + ventas[i].totalToPay());
             } 
         }
+        */
     }
     
-    public void showSale(){
+    public void showSale(){ 
+        Iterator it = ventas.iterator();
+        Venta venta;
+        while(it.hasNext()){
+            venta = (Venta) it.next();
+            venta.printProductsSale();
+        }
+        /*
         for (int i=0;i<getPlaceV();i++){
             ventas[i].printProductsSale();
         }
+        */
     }
     
     public void allCustomers(){
